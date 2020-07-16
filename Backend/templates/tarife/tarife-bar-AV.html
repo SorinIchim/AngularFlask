@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Tasks List{% endblock %}
+
+{% block content %}
+
+<div class="container is-fluid">
+
+	{% include '_flashmessages.html' %}
+
+	<p>{{session.user}}</p>
+
+	<h1 class="title" id="titlu_principal">Lista de preturi al produselor de la bar</h1>
+    <br><br><br>
+    <form class="search-form">
+		<div class="panel-block">
+			<p class="control has-icons-left">
+				<input class="input is-primary" type="text" placeholder="Search">
+				<span class="icon is-left">
+					<i class="fas fa-search" aria-hidden="true"></i>
+				</span>
+			</p>
+		</div>
+        <button class="button is-primary">Search</button>
+        <button class="button is-success">Salveaza modificarile</button>
+        <br><br>
+	</form>
+	<form class="form" method="POST" action="{{ url_for('tarifeBarAV')}}" role="form">
+
+        {{ form.hidden_tag() }}
+    <div class="">
+        <table>
+            <tr>
+                <th>Nr.Crt.</th>
+                <th>Denumire produs<i class="fa fa-sort-down" aria-hidden="true"></i></th>
+                <th>Pret produs<i class="fa fa-sort-down" aria-hidden="true"></i></th>
+                <th>Bucati in stoc<i class="fa fa-sort-down" aria-hidden="true"></i></th>
+                <th>Actiuni disponibile:</th>
+            </tr>
+            <tr>
+                <th>
+                </th>
+                <th>
+                    <div class="field">
+                        <div class="control has-icons-left has-icons-right">
+                          <input class="input is-success" name="name" type="text" placeholder="Denumire produs" value="">
+                          <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                          </span>
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="field">
+                        <div class="control has-icons-left has-icons-right">
+                          <input class="input is-success" name="price" type="number" min="0" placeholder="Pret produs" value="">
+                          <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                          </span>
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="field">
+                        <div class="control has-icons-left has-icons-right">
+                          <input class="input is-success" name="stock" type="number"  min="0" placeholder="Stoc produs" value="">
+                          <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                          </span>
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="field">
+                        <p class="control">
+                            <button type="submitComment" class="button is-success">
+                            Adauga
+                            </button>
+                        </p>
+                    </div>
+                </th>
+            </tr>
+        </form>
+        {% for produs in produse %}
+            <tr>
+                <th>
+                    <p>{{produs.id}}</p>
+                </th>
+                <th>
+                    <div class="field">
+                        <div class="control has-icons-left has-icons-right">
+                          <input class="input is-success" name="name" type="text" value="{{produs.name}}">
+                          <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                          </span>
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="field">
+                        <div class="control has-icons-left has-icons-right">
+                          <input class="input is-success" name="price" type="number" value="{{produs.price}}">
+                          <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                          </span>
+                        </div>
+                    </div>
+                </th>
+                <th>        
+                    <div class="field">
+                        <div class="control has-icons-left has-icons-right">
+                        <input class="input is-success" name="stock" type="number" value="{{produs.stock}}">
+                        <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <a href="{{ url_for('stergeProdus', produs_id=produs.id) }}">
+                    <button type="submit" class="button is-danger is-light">Sterge</button>
+                    </a>
+                </th>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+   
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Labels List{% endblock %}
+
+{% block content %}
+<div class="container is-fluid">
+
+	{% include '_flashmessages.html' %}
+
+	<h1 class="title" id="titlu_principal">Labels List</h1>
+
+	<a href="/label">
+	<button type="submit" class="button is-success">
+	New label
+	</button>
+	</a>
+	<br><br>
+	<div class="columns is-multiline">
+		{% for label in labels %}
+			<div class="column is-4">
+				<div class="box">
+					<div class="title_date">
+						<h3 class="title">{{ label.name }}</h3>
+						<span class="label_created_at">-=Created at: {{ label.created_at.date() }}=-</span>
+					</div> 
+					<h5>Color: {{ label.color }}</h5>
+					<a href="{{ url_for('editlabel',  label_id=label.id) }}">
+					<button type="submit" class="button is-success">
+					Edit
+					</button>
+					</a>
+					<a href="{{ url_for('deletelabel',  label_id=label.id) }}">
+					<button type="submit" class="button is-danger">
+					Delete
+					</button>
+					</a>
+					<p>LastUpdate: {{ label.updated_at }}</p>				
+				</div>
+			</div>
+		{% endfor %}
+	</div>	
+	<br><br><br><br><br><br><br><br><br><br><br><br><br>	
+</div>
+
+{% endblock %}

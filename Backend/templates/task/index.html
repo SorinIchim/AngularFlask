@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+
+<div class="container is-fluid">
+
+	{% include '_flashmessages.html' %}
+
+	<p>{{session.user}}</p>
+
+	<div id="wrapper">
+		<!-- ===============PANEL B=============== -->
+		<img id="b" class="panels" src="/static/img/acasa1.jpg" alt="HomeImg">
+
+		<!-- ===============PANEL B=============== -->
+		<div id="b" class="panels">
+			<img id="biliard11" src="/static/img/biliard1.jpg" alt="BiliardImg">
+			<div id="biliard12">
+				<h3>BILIARD</h3>
+				<br>
+				<p>
+					<strong>Biliardul</strong> este o familie de jocuri ce sunt jucate pe o masă cu șase găuri numite buzunarele mesei, cu tac, folosit pentru a lovi bilele, ca acestea să se miște pe suprafața mesei. El este cunoscut ca fiind un joc de amatori ce se joacă prin baruri.
+				</p>
+			</div>
+	
+			<div>
+				<h3>ISTORIA BILIARDULUI</h3>
+				<p>
+					<strong>Istoria biliardului</strong> începe undeva prin secolul 15 în Europa. Se spune că acesta a evoluat dintr-un joc cu bețe și bile jucat pe o peluză, acesta fiind asemănător, în forma sa inițială, cu golful sau croquet-ul. Cuvântul „biliard” provine din unul dintre cele două cuvinte franțuzești, „billart” (băț) sau „bille” (bilă), deși originea lui exactă rămâne încă incertă. Iată o scurtă cronologie a jocului de biliard, din timpuri străvechi, începând cu anii 1400, și ajungând până aproape de zilele noastre!
+				</p>
+			</div>
+		</div>
+	
+		<!-- ===============PANEL C=============== -->
+		<hr>
+		<br>
+		<div id="c" class="panels">
+			<img id="bolwing11" src="/static/img/bowling1.jpg" alt="BowlingImg">
+			<div id="bowling12">
+				<h3>BOWLING</h3>
+				<p>
+					<strong>Bowlingul </strong>este un sport în care jucătorii încearcă să obțină puncte rostogolind o bilă pe o suprafață plană (de obicei de lemn sau sintetică), fie într-un număr de jaloane, fie în alte bile-țintă. Există mai multe varietăți de bowling, unul dintre cel mai recente și populare (mai ales în Statele Unite ale Americii) fiind cel cu 10 jaloane. Dovezi ale unor jocuri asemănătoare datează încă din anul 300 d.Hr. în Germania, Finlanda și Yemen.
+				</p>
+			</div>
+			<div>
+				<br>
+				<h3>TIPURI DE BOWLING</h3>
+				<ul>
+					<li>tenpin: Se joacă cu cele mai mari și mai grele (10) jaloane, cu bilă grea și mare, în special în America de Nord.</li>
+					<li>ninepin: Jaloanele (în număr de 9) sunt, de obicei, agățate cu arcuri de vârf, se folosesc bile cu găuri pentru degete; este foarte popular în Europa.</li>
+					<li>candlepin: Cele mai înalte și subțiri jaloane, iar bila are mâner.</li>
+					<li>duckpin: Jaloanele sunt scurte, iar bila are mâner.</li>
+				</ul>
+			</div>
+		</div>
+	
+		<!-- ===============PANEL D=============== -->
+		<br><br>
+		<div id="d" class="panels">
+			<img id="darts11" src="/static/img/darts1.jpg" alt="DartsImg">
+			<div id="darts12">
+				<h3>DARTS</h3>
+				<p>
+					<strong>Darts </strong>este un joc în care niște proiectile mici sunt aruncate pe o țintă fixată de un perete. Cu toate că în trecut existau mai multe variante de joc, astăzi prin acest termen se are în vedere un joc cu niște reguli stricte.
+					Jocul apărut cu secole în urmă, în Insulele Britanice. Până în prezent, darts este un joc tradițional care este jucat în pub-uri din Marea Britanie, Olanda, Scandinavia, Statele Unite ale Americii și altele. În plus darts se joacă și la nivel profesionist.
+				</p>
+			</div>
+			<div>
+				<h3>REGULAMENT</h3>
+				<p>Ținta standard este împărțită în douăzeci de secțiuni numerotate, de obicei alb și negru, fiecare atribuită cu un număr de la 1 la 20. În centru se află "Mărul" (în engleză Bullseye), care este estimat la 50 de puncte, înconjurat de un inel verde în jurul valorii de 25 puncte. Inelul exterior îngust presupune o dublare a numărului de sectoare, inelul interior îngust înseamnă triplul numărului de sectoare.
+			</div>
+		</div>
+	<!-- ===============PANEL E=============== -->
+	<br><br>
+		<a href="/contact">
+			<h1 style="font-size: 50px; text-align: center;">Contacteaza-ne!</h1>
+		</a>
+		<a href="/task">
+			<h1 style="font-size: 50px; text-align: center;">Rezerva acum!</h1>
+		</a>
+	</div>
+
+
+{% endblock %} 

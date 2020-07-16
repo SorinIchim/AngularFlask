@@ -1,0 +1,72 @@
+.title{
+	text-align: center;
+}
+
+#task_description{
+	background-color: #deffe1;
+	border-radius: 10px;
+}
+
+.is-loading, .status{
+	background-size: auto;
+	border-radius: 25px;
+	border: 1.5px solid black;
+	font-size: 15px;
+}
+
+.in_progress, .status:hover{
+	cursor:copy;
+}
+
+.footer{
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
+
+.past-paginate{
+	text-align: center;
+	font-weight: bold;
+}
+
+.label_title{
+	display: flex;
+}
+
+.comment_title{
+	display: flex;			
+}
+
+.comment_date{
+	font-size: 13px;
+}
+
+.comment_body{
+background-color: #deffe1;
+border-radius: 10px;	
+}
+
+.X-button {
+border-radius: 50%;
+background-color: white;
+font-weight: 1000;
+cursor: pointer;
+text-align: center;
+}
+
+.X-button:hover{
+	background-color: #fc7272; 
+}
+
+.is-light{
+	border-radius: 50% !important;
+}
+
+#titlu_principal{
+	padding-top: 20px;
+}
+
+.contact {
+	text-align: center;
+	background-color: #fc7272; 
+}

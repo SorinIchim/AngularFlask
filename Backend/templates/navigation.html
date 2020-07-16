@@ -1,0 +1,258 @@
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/index">
+      <img src="/static/img/acasa.png" width="35" height="35">
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <!-- =================================================-->
+      <!-- ========================ADMIN====================-->
+      <!-- =================================================-->
+    {% if session.get('username') %} 
+      {% if session.get('is_admin')=="True" %} 
+      <a class="navbar-item" href="/task">
+        Statistici
+      </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Rezervari
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="/tasks">
+            Toate rezervarile
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="/task">
+            Adauga o noua rezervare
+            </a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Abonamente
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="/tasks">
+            Toate abonamentele
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="/task">
+            Adauga un abonament nou
+            </a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+          Lista tarife (Admin view)
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="/tarife-bar-AV">
+            Tarife bar (Admin view)
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="/tarife-bar">
+            Tarife bar
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="/tarife-jocuri-AV">
+            Tarife jocuri (Admin view)
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="/tarife-jocuri">
+            Tarife jocuri
+            </a>
+          </div>
+        </div>
+      {% endif %}
+        <!-- =================================================-->
+        <!-- ========================USER LOGAT====================-->
+        <!-- ==================================================-->
+      {% if session.get('is_admin')=="False" %} 
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Rezervari
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="/tasks/session">
+                Rezervarile mele
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="/task">
+                Adauga o noua rezervare
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Abonamente
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="/tasks/session">
+                Abonamente mele
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="/task">
+                Adauga un nou abonament
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+            Lista tarife
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="/tarife-bar">
+              Tarife bar
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="/tarife-jocuri">
+              Tarife jocuri
+              </a>
+            </div>
+          </div>
+
+          <a style="background-color: honeydew;" class="navbar-item">
+            <p style="color: black;">Zone de joc disponibile acum:</p>
+          </a>
+              <a style="background-color: honeydew;" class="navbar-item">
+                <img style="width: 25px;" src = "/static/img/billiard.png">
+                <p style="color: black;" >-15 mese</p>
+              </a>
+              <a style="background-color: honeydew;" class="navbar-item">
+                <img style="width: 25px;" src = "/static/img/bowling.png">
+                <p style="color: black;">-20 piste</p>
+              </a>
+              <a style="background-color: honeydew;" class="navbar-item">
+                <img style="width: 25px;" src = "/static/img/darts.png">
+                <p style="color: black;">-17 table</p>
+              </a>
+<!-- 
+              <a style="background-color: honeydew;" class="navbar-item">
+                <p style="color: black;">Zone de joc disponibile acum:</p>
+              </a>
+                  <a class="navbar-item">
+                    <img style="width: 25px;" src = "/static/img/billiard.png">
+                    -15 mese
+                  </a>
+                  <a class="navbar-item">
+                    <img style="width: 25px;" src = "/static/img/bowling.png">
+                    -20 piste
+                  </a>
+                  <a class="navbar-item">
+                    <img style="width: 25px;" src = "/static/img/darts.png">
+                    -17 table
+                  </a> -->
+
+
+        <!-- =================================================-->
+        <!-- ========================USER NELOGAT====================-->
+        <!-- ==================================================-->
+      {% endif %}
+    {% else %} 
+      <a class="navbar-item" href="/task">
+        Rezervari
+      </a>
+      <a class="navbar-item" href="/task">
+        Abonamente
+      </a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+        Lista tarife
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="/tarife-bar">
+          Tarife bar
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item" href="/tarife-jocuri">
+          Tarife jocuri
+          </a>
+        </div>
+      </div>
+      <a style="background-color: honeydew;" class="navbar-item">
+        <p style="color: black;">Zone de joc disponibile acum:</p>
+      </a>
+          <a style="background-color: honeydew;" class="navbar-item">
+            <img style="width: 25px;" src = "/static/img/billiard.png">
+            <p style="color: black;" >-15 mese</p>
+          </a>
+          <a style="background-color: honeydew;" class="navbar-item">
+            <img style="width: 25px;" src = "/static/img/bowling.png">
+            <p style="color: black;">-20 piste</p>
+          </a>
+          <a style="background-color: honeydew;" class="navbar-item">
+            <img style="width: 25px;" src = "/static/img/darts.png">
+            <p style="color: black;">-17 table</p>
+          </a>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="navbar-start">
+                <a class="navbar-item" href="/contact">
+                  Contact
+                </a>
+              </div>
+              <div class="navbar-item has-dropdown is-hoverable">
+    {% endif %}
+    </div>
+    
+    
+
+    {% if session.get('username') %} 
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/contact">
+            Contact
+          </a>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+
+          {% if session.has_avatar %}
+
+            <img src="/static/img/uploads/{{ session.user_id }}.jpg"></img>
+
+          {% else %}
+
+            <img src="/static/img/uploads/default.jpg"></img>            
+          
+          {% endif %}
+
+        <a class="navbar-link">
+          {{ session.username }}
+        </a>
+        <div class="navbar-dropdown">
+          <a href="/profile" class="navbar-item">
+            Hello, {{ session.username }} !
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item" href="logout">
+            Logout
+          </a>
+        </div>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a href="/register" class="button is-primary">
+            <strong>Register</strong>
+          </a>
+          <a href="/login" class="button light">
+            Login
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</nav>

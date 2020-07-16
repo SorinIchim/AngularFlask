@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block title %}Tasks List{% endblock %}
+
+{% block content %}
+
+<div class="container is-fluid">
+
+	{% include '_flashmessages.html' %}
+
+	<p>{{session.user}}</p>
+
+	<h1 class="title" id="titlu_principal">Lista de rezervari</h1>
+
+	<div class="field has-addons">
+		<a href="{{ url_for('tasks') }}">
+		<button class="button is-warning">
+		<i class="fas fa-tasks">
+		</i>
+		</button>
+		</a>
+
+		<a href="{{ url_for('opentasks') }}">
+		<button type="submit" class="button is-danger">
+		<i class="fas fa-spinner"></i>
+		</button>
+		</a>
+
+		<a href="{{ url_for('closedtasks') }}">
+		<button type="submit" class="button is-success">
+		<i class="far fa-check-circle"></i>
+		</button>
+		</a>
+	</div>
+
+	<div class="field has-addons">
+		<a href="{{ url_for('biliardtasks') }}">
+			<img type="submit" style="width: 35px;" src = "/static/img/billiard.png">
+		</a>
+		<a href="{{ url_for('bowlingtasks') }}">
+			<img type="submit" style="width: 35px; margin:0px 25px;" src = "/static/img/bowling.png">
+		</a>
+		<a href="{{ url_for('dartstasks') }}">
+			<img type="submit" style="width: 35px;" src = "/static/img/darts.png">
+		</a>
+	</div>
+
+	<a href="/task">
+	<button id="new-task" type="submit" class="button is-success">
+	Rezervare noua
+	</button>
+	</a>
+	<br><br><br>
+
+
+	<form class="search-form">
+		<div class="panel-block">
+			<p class="control has-icons-left">
+				<input class="input is-primary" type="text" placeholder="Search">
+				<span class="icon is-left">
+					<i class="fas fa-search" aria-hidden="true"></i>
+				</span>
+			</p>
+		</div>
+		<button class="button is-primary">Search</button>
+	</form>
+
+
+	<br><br><br>
+	<div class="columns is-multiline">
+		{% for task in tasks.items %}
+			<div style="border: 5px grey solid; border-radius: 10%;" class="column is-4">
+				<div class="box" >
+
+					{% if task.is_closed==0 %}
+					<a href="{{ url_for('closed', task_id=task.id) }}" class="in_progress">
+					<button style="background-color:green !important" class="button is-success is-loading"></button>
+					<button class="status" style="background-color: yellow !important">Rezervarea nu este achitata</button>
+					</a>
+					{% else %}
+					<a href="{{ url_for('open', task_id=task.id) }}" class="">
+						<button class="button is-success">
+	    					<span class="icon is-small">
+	    						<i class="fas fa-check"></i>
+	    					</span>
+	    					<span>Rezervare achitata</span>
+						</button>
+					</a>
+					{% endif %}
+					<br>
+
+					<span style="font-weight: 10000; font-size: 35px; background-color:yellow; border-radius: 50%;">{{ task.persons_nr }} - </span>
+					{% if task.biliard !=0 %}
+					<img style="width: 35px;" src = "/static/img/billiard.png">
+					{% endif %}
+					{% if task.bowling !=0 %}
+					<img style="width: 35px;" src = "/static/img/bowling.png">
+					{% endif %}
+					{% if task.darts !=0 %}
+					<img style="width: 35px;" src = "/static/img/darts.png">
+					{% endif %}
+					
+					<br>
+					<p>Date rezervare:</p> <p style="font-weight: 1000;">{{ '%02d' % task.due_date.day}}-{{ '%02d' % task.due_date.month }}-{{ task.due_date.year }}</p>
+					<p>{{ task.inceputH }}:{{ task.inceputM }}-{{ task.finalH }}:{{ task.finalM }}</p>
+					<a href="{{ url_for('editTask', task_id=task.id) }}">
+					<h3 class="title"id="titlu_task">Tel: {{ task.title }}</h3>
+					</a>
+					<button class="button is-danger is-light is-small">{{ task.comments.count() }}</button>		 
+					
+					<h5 id="task_description">{{ task.description }}</h5>
+					<p>Created by: {{ task.user.fullname }}</p>
+
+					<a href="{{ url_for('commentTask', task_id=task.id) }}">
+					<button class="button is-warning">
+					Comment
+					</button>
+					</a>
+
+					<a href="{{ url_for('editTask', task_id=task.id) }}">
+					<button type="submit" class="button is-success">
+					Edit
+					</button>
+					</a>
+
+					<a href="{{ url_for('deleteTask', task_id=task.id) }}">
+					<button type="submit" class="button is-danger">
+					Delete
+					</button>
+					</a>
+					<p>Create date: {{ task.created_at }} </p>
+					<p>Last edit: {{ task.updated_at }} </p>
+				</div>
+			</div>
+		{% endfor %}
+	</div>		
+	
+	<br><br><br><br><br><br><br><br>
+	<div class="past-paginate">
+		{% if tasks.has_prev %}
+			<a href="{{ url_for('tasks', page=tasks.prev_num) }}">&lt;&lt; Rezervari</a>	
+		{% else %}
+			&lt;&lt; Rezervari 
+		{% endif %} |
+		{% if tasks.has_next %}
+			<a href="{{ url_for('tasks', page=tasks.next_num) }}">Rezervari &gt;&gt;</a>	
+		{% else %}
+			Rezervari &gt;&gt;
+		{% endif %}
+	</div> 
+
+</div>
+
+{% endblock %}

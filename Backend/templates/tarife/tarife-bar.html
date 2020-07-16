@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Tasks List{% endblock %}
+
+{% block content %}
+
+<div class="container is-fluid">
+
+	{% include '_flashmessages.html' %}
+
+	<p>{{session.user}}</p>
+
+	<h1 class="title" id="titlu_principal">Lista de preturi al produselor de la bar</h1>
+    <br><br><br>
+
+    <div class="">
+        <table style="width:100%;">
+            <tr>
+                <th>Denumire produs</th>
+                <th>Pret produs</th>
+            </tr>
+        {% for produs in produse %}
+            <tr>
+                <th>
+                    <div class="field">
+                        <div class="control has-icons-left has-icons-right">
+                            <h3 class="input is-success" name="price" type="number" value="">{{produs.name}}</h3>
+                          <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                          </span>
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="field">
+                        <div class="control has-icons-left has-icons-right">
+                          <h3 class="input is-success" name="price" type="number" value="">{{produs.price}}</h3>
+                          <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                          </span>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+   
+{% endblock %}

@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+
+{% block title %}Rezervare{% endblock %}
+
+{% block content %}
+
+<div class="container is-fluid">
+
+	{% include '_flashmessages.html' %}
+
+	<br>
+	<div class="columns">
+
+		<div class="column"></div>
+
+		<div class="column">
+
+			<h1 class="title">Rezervare</h1>
+
+			<!-- =================================================================================================== -->
+			<!-- ADD NEW RESERVATION======================================================================================= -->
+			<!-- =================================================================================================== -->
+			{% if action == "new" %}			
+			<form class="form" method="POST" action="{{ url_for('task') }}" role="form">
+
+				{{ form.hidden_tag() }}
+				<!-- telephone -->
+				<br><br>
+				<p>Numar de telefon pentru contact:</p>
+				<div class="field">
+					<p class="control has-icons-left has-icons-right">
+						<input class="input" id="title" name="title" required="" type="text" value="0754254597" placeholder="Numar de telefon">
+						<span class="icon is-small is-left">
+							<i class="fa fa-edit"></i>
+						</span>
+					</p>
+				</div>
+
+				<!-- Due_date -->
+				<p>Selectati data rezervarii:</p>
+				<div class="field">
+					<p class="control has-icons-left">
+						<input class="input" id="due_date" name="due_date" value="" type="date" placeholder="Due_date">
+						<span class="icon is-small is-left">
+							<i class="fa fa-calendar"></i>
+						</span>
+					</p>
+				</div>
+
+				<!-- Interval orar -->
+				<p>Selectati intervalul orar:</p>
+				<input type="number" id="inceputH" name="inceputH" min="12" max="24" value="12">:
+				<input type="number" id="inceputM" name="inceputM" min="0" max="45" step="15" value="15">-
+				<input type="number" id="finalH" name="finalH" min="12" max="24" value="14">:
+				<input type="number" id="finalM" name="finalM" min="0" max="45" step="15" value="00">
+				<br>
+				<p>*Interval de functionare: 12:00-24:00*</p>
+				<br>
+
+				<!-- Numar de persoane -->
+				<span>Selectati numarul de persoane:</span>
+				<input type="number" id="persons_nr" name="persons_nr" min="1" max="20" value="10">
+				<br><br>
+
+				<!-- Play zone -->
+				<span>Biliard-numar mese:</span>
+				<input type="number" id="biliard" name="biliard" min="0" max="20" value="1">
+				<br>
+
+				<span>Bowling-numar piste:</span>
+				<input type="number" id="bowling" name="bowling" min="0" max="20" value="1">
+				<br>
+
+				<span>Darts-numar table:</span>
+				<input type="number" id="darts" name="darts" min="0" max="20" value="1">
+				<br><br>
+
+				<!-- Description -->
+				<p>*Detalii rezervare:</p>
+				<div class="control">
+					<p class="control has-icons-left">
+						<textarea class="textarea is-focused" style="padding-left: 2.5em" id="description" name="description" placeholder="Detalii rezervare">As dori ca zonele de joc sa fie alaturate</textarea>
+
+						<span class="icon is-small is-left">
+							<i class="fa fa-edit"></i>
+						</span>
+					</p>
+				</div>
+				<br><br>
+
+				<input type="checkbox" id="terms" name="terms" value="">
+  				<label for="terms">Sunt de acord cu <a>termenii si conditiile</a></label><br><br>
+
+				<div class="field">
+					<p class="control">
+						<button  type="rezerva" class="button is-success">
+							Rezerva!
+						</button>
+						<button type="submit" class="button is-warning">
+							Achita acum!
+						</button>
+					</p>
+				</div>
+			</form>
+			<br>
+
+			{% elif action == "edit" %}
+			<!-- =================================================================================================== -->
+			<!-- EDIT RESERVATION========================================================================================== -->
+			<!-- =================================================================================================== -->
+
+			<form class="form" method="POST" action="{{ url_for('editTask', task_id=task.id) }}" role="form">
+
+			{{ form.hidden_tag() }}
+
+			<!-- telephone number -->
+			<br><br>
+			<p>Numar de telefon pentru contact:</p>
+			<div class="field">
+				<p class="control has-icons-left has-icons-right">
+					<input class="input" id="title" name="title" required="" type="text" value="{{ task.title }}" placeholder="Numar de telefon">
+					<span class="icon is-small is-left">
+						<i class="fa fa-edit"></i>
+					</span>
+				</p>
+			</div>
+
+				<!-- Due_date -->		
+				<br>
+				<p>Select due date:</p>
+				<div class="field">
+					<p class="control has-icons-left">
+						{% if task.due_date == None %}
+						<input class="input" id="due_date" name="due_date" value="" type="date" placeholder="Due_date">
+						{% else %}
+						<input class="input" id="due_date" name="due_date" value="{{ task.due_date.year }}-{{ '%02d' % task.due_date.month }}-{{ '%02d' % task.due_date.day}}" type="date" placeholder="Due_date">
+						{% endif %}
+						<span class="icon is-small is-left">
+							<i class="fa fa-calendar"></i>
+						</span>
+					</p>
+				</div>
+
+				<!-- Interval orar -->
+				<p>Selectati intervalul orar:</p>
+				<input type="number" id="inceputH" name="inceputH" min="12" max="24" value="{{ task.inceputH }}">:
+				<input type="number" id="inceputM" name="inceputM" min="0" max="45" step="15" value="{{ task.inceputM }}">-
+				<input type="number" id="finalH" name="finalH" min="12" max="24" value="{{ task.finalH }}">:
+				<input type="number" id="finalM" name="finalM" min="0" max="45" step="15" value="{{ task.finalM }}">
+				<br>
+				<p>*Interval de functionare: 12:00-24:00*</p>
+				<br>
+
+				<!-- Numar de persoane -->
+				<span>Selectati numarul de persoane:</span>
+				<input type="number" id="persons_nr" name="persons_nr" value="{{ task.persons_nr }}" min="1" max="20">
+				<br><br>
+
+				<!-- Play zone -->
+				<span>Biliard-numar mese:</span>
+				<input type="number" id="biliard" name="biliard" value="{{ task.biliard }}" min="0" max="20">
+				<br>
+
+				<span>Bowling-numar piste:</span>
+				<input type="number" id="bowling" name="bowling" value="{{ task.bowling }}" min="0" max="20">
+				<br>
+
+				<span>Darts-numar table:</span>
+				<input type="number" id="darts" name="darts" value="{{ task.darts }}" min="0" max="20">
+				<br><br>
+
+				<!-- Description -->
+				<div class="field">
+					<p class="control has-icons-left">
+						<input class="textarea" id="description" name="description" type="text" value="{{ task.description }}" placeholder="Description"></input>
+						<span class="icon is-small is-left">
+							<i class="fa fa-file-word"></i>
+						</span>
+					</p>
+				</div>
+
+				<div class="field">
+					<p class="control">
+						<button type="submitSave" class="button is-success">
+						Save 
+						</button>
+					</p>
+				</div>
+			</form>
+
+			<!-- Add comment + comments list -->
+			<br>
+			<form class="form" method="POST" action="{{ url_for('commentTask', task_id=task.id) }}" role="form">
+
+				{{ form.hidden_tag() }}
+
+				<p>Leave a comment:</p>
+				<div class="control">
+					<p class="control has-icons-left">
+						<textarea class="textarea is-focused" style="padding-left: 2.5em" id="comment_body" name="comment_body" placeholder="Leave a comment"></textarea>
+						<span class="icon is-small is-left">
+							<i class="fa fa-file-word"></i>
+						</span>
+					</p>
+				</div>
+
+
+				<br>
+
+				<div class="field">
+					<p class="control">
+						<button type="submitComment" class="button is-success">
+						Comment
+						</button>
+					</p>
+				</div>
+			</form>
+
+
+			<div class="">
+				{% for comment in comments %}
+
+					<div class="box">
+						<div class="comment_title">
+							<p class="comment_user_id">{{ comment.usercomm.fullname }}</p>
+							<h6 class="comment_date"> - {{ comment.date }}</h6>
+						</div>
+						<h5 id="viewComment{{comment.id}}" class="comment_body">{{ comment.body }}</h5>
+						<div id="editComment{{comment.id}}" style="display: None">
+							<form method="POST" action="{{ url_for('editCommentTask', comment_id=comment.id) }}">
+								{{ form.hidden_tag() }}
+								<br>
+								<input class="textarea" type="textarea" name="comment_body" value="{{comment.body}}">
+								<br>
+								<button class="button is-info" type="submit">Save</button>
+							</form>
+						</div>
+						<a href="{{ url_for('deleteComment', task_id=task.id, comment_id=comment.id) }}">
+							<button type="X-button" class="X-button">
+							X
+							</button>
+						</a>
+
+						{% if session.username == comment.usercomm.fullname %}
+						<a>
+							<button id="editCommentButton{{comment.id}}" class="btn"><i class="fa fa-edit"></i></button>		
+						</a>
+						{% endif %}
+					</div>	
+
+					<script>
+						var button = document.getElementById("editCommentButton{{comment.id}}");
+						button.addEventListener("click",function(e){
+							document.getElementById("viewComment{{comment.id}}").style.display='none';
+							document.getElementById("editComment{{comment.id}}").style.display='block';
+						},false);
+					</script>
+
+				{% endfor %}
+
+			</div>
+
+			<!-- =================================================================================================== -->
+			<!-- ADD COMMENT======================================================================================== -->
+			<!-- =================================================================================================== -->
+
+			{% elif action == "comment" %}
+			<br>
+			<form class="form" method="POST" action="{{ url_for('commentTask', task_id=task.id) }}" role="form">
+
+				{{ form.hidden_tag() }}
+
+				<p>Leave a comment:</p>
+				<div class="control">
+					<p class="control has-icons-left">
+						<textarea class="textarea is-focused" style="padding-left: 2.5em" id="comment_body" name="comment_body" placeholder="Leave a comment"></textarea>
+						<span class="icon is-small is-left">
+							<i class="fa fa-file-word"></i>
+						</span>
+					</p>
+				</div>
+				<br>
+
+				<div class="field">
+					<p class="control">
+						<button type="submit" class="button is-success">
+						Comment
+						</button>
+					</p>
+				</div>
+			</form>
+			<br><br><br><br><br><br><br><br><br><br><br><br>
+
+			{% endif %}
+
+		</div>
+
+		<div class="column"></div>
+
+	</div>
+
+</div>
+
+{% endblock %}	

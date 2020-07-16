@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}User Logged in{% endblock %}
+
+{% block content %}
+
+<div class="container is-fluid">
+
+	{% include '_flashmessages.html' %}
+	
+	<br><br><br><br><br><br>
+
+	<div class="columns">
+
+		<div class="column"></div>
+
+		<div class="column">
+
+			<h1 class="title">User Login</h1>
+
+			<form class="form" method="POST" action="{{ url_for('login') }}" role="form">
+
+				{{ form.hidden_tag() }}
+
+				<div class="field">
+					<p class="control has-icons-left has-icons-right">
+						<input class="input" id="username" name="username" required="" type="text" value="" placeholder="Username">
+						<span class="icon is-small is-left">
+							<i class="fas fa-user"></i>
+						</span>
+					</p>
+				</div>
+				<div class="field">
+					<p class="control has-icons-left">
+						<input class="input" id="password" name="password" required="" value="" type="password" placeholder="Password">
+						<span class="icon is-small is-left">
+							<i class="fas fa-lock"></i>
+						</span>
+					</p>
+				</div>
+				<div class="field">
+					<p class="control">
+						<button type="submit" class="button is-success">
+							Login
+						</button>
+						<a href="/register" class="button is-success">
+							Register
+						</a>
+					</p>
+				</div>
+
+			</form>
+
+		</div>
+
+		<div class="column"></div>
+
+	</div>
+
+</div>
+
+{% endblock %}	

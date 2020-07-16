@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Rezervare{% endblock %}
+
+{% block content %}
+
+<div class="container is-fluid">
+
+	{% include '_flashmessages.html' %}
+<div style="text-align: center;"class="column">
+    <br><br>
+    <h1 class="title">Contact</h1>
+
+    <div id="locatie">
+        <h3 style="font-size: 30px;">Locatie:</h3>
+        <p style="font-size: 20px;">Iasi, str. Strada nr. 1</p>
+        <img id="maps" src="/static/img/maps.jpg" alt="MapsImg">
+    </div>
+
+    <br><br>
+    <div id="telefon">
+        <h3 style="font-size: 30px;">Telefon:</h3>
+        <ul>
+            <li>079 999 999</li>
+            <li>078 888 888</li>
+        </ul>
+    </div>
+
+    <br>
+    <div id="program">
+        <h3 style="font-size: 30px;">Program:</h3>
+        <span><strong>Luni-Joi:</strong></span>
+        <span> 09:00 - 00:30</span>
+        <br>
+        <span><strong>Vineri-Duminica:</strong></span>
+        <span> 09:00 - 02:30</span>
+    </div>
+
+    <br>
+    <div style="text-align: center;" id="mesaj">
+        <h3 style="text-align: center; font-size: 30px;">Trimite un mesaj:</h3>
+                <div style="margin:0 25%; width: 50%;" class="control">
+                    <textarea class="input is-success textarea" placeholder="Mesajul dumneavoastra"></textarea>
+                </div>
+            <button class="button is-success">
+                Trimite
+            </button>
+        </form>
+</div>
+{% endblock %}	

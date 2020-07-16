@@ -1,0 +1,11 @@
+<footer class="footer">
+  <div class="content has-text-centered">
+    {% if session.get('username') %} 
+    <h3>
+      <strong>Hello {{ session.username }}</strong></a>
+    </h3>
+    {% endif %}
+    <p>Copyright © 2020. All rights reserved. <a><em>Terms of Use</em> | <em>Privacy Policy</em></a></p>
+
+  </div>
+</footer> 

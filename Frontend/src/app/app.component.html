@@ -1,0 +1,55 @@
+<h1>Integrate Angular with Flask Python</h1>
+
+<!-- <form class="form" method="POST" action="{{ url_for('ListaProduse') }}" role="form"> -->
+<!-- <form name="produsForm"> -->
+    <label>Product name:
+      <input #productName value="Produs Test"/>
+    </label><br>
+    <label>Product price:
+        <input #productPrice value="10"/>
+      </label><br>
+      <label>Product stock:
+        <input #productStock value="150"/>
+      </label>
+    <button name="addProdusButton" (click)="add(productName.value, productPrice.value, productStock.value); productName.value=''; productPrice.value=''; productStock.value=''">
+      add
+    </button>
+  <!-- </form> -->
+
+<app-search></app-search>
+
+<h4>Cauta Produsul - Varianta Filter</h4>
+
+<div class="search-hero">
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" placeholder="Start searching">
+</div>
+
+
+<!-- ================================================================================= -->
+<table class="produse">
+  <tr>
+      <th *ngFor="let column of headers">
+          {{column}}
+      </th>
+      <th>save</th>
+      <th>delete</th>
+  </tr>
+
+  <tr *ngFor="let produs of produse | filter:searchText">
+  <!-- <tr *ngFor="let produs of produse"> -->
+      <!-- <td *ngFor="let col of headers">
+          {{produs[col]}}
+      </td> 
+    VARIANTA 2:-->
+  <!-- <form name="produseForm"> -->
+      <td class="badge">{{produs.id}}</td>
+      <td><input [(ngModel)]="produs.name"></td>
+      <td><input [(ngModel)]="produs.price"></td>
+      <td><input [(ngModel)]="produs.stock"></td>
+      
+      <td><button class="save" style="cursor: copy;" title="save change" (click)="update(produs)">save</button></td>
+      <td><button class="delete" style="cursor: no-drop;" title="delete produs" (click)="delete(produs)">x</button></td>
+  <!-- </form> -->
+  </tr>
+  
+</table>

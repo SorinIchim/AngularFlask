@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Label{% endblock %}
+
+{% block content %}
+
+<div class="container is-fluid">
+
+	{% include '_flashmessages.html' %}
+	
+	<br><br><br><br><br><br>
+
+	<div class="columns">
+
+		<div class="column"></div>
+
+		<div class="column">
+
+			<h1 class="title">Label</h1>
+
+			{% if action == "new" %}
+			<form class="form" method="POST" action="{{ url_for('label') }}" role="form">
+				{{ form.hidden_tag() }}
+
+				<div class="field">
+					<p class="control has-icons-left has-icons-right">
+						<input class="input" id="username" name="name" required="" type="text" value="" placeholder="Label name">
+						<span class="icon is-small is-left">
+							<i class="fa fa-edit"></i>
+						</span>
+					</p>
+				</div>
+				<div class="field">
+					<p class="control has-icons-left">
+						<input class="input" id="color" name="color" required="" value="" type="text" placeholder="Color">
+						<span class="icon is-small is-left">
+							<i class="fa fa-paint-brush"></i>
+						</span>
+					</p>
+				</div>
+
+
+				<div class="field">
+					<p class="control">
+						<button type="submit" class="button is-success">
+						Save
+						</button>
+					</p>
+				</div>
+
+			</form>
+
+
+			{% else %}
+			
+			<form class="form" method="POST" action="{{ url_for('editlabel', label_id=label.id) }}" role="form">
+				
+				{{ form.hidden_tag() }}
+
+				<div class="field">
+					<p class="control has-icons-left has-icons-right">
+						<input class="input" id="username" name="name" required="" type="text" value="{{ label.name }}" value=label.name>
+						<span class="icon is-small is-left">
+							<i class="fa fa-edit"></i>
+						</span>
+					</p>
+				</div>
+				<div class="field">
+					<p class="control has-icons-left">
+						<input class="input" id="color" name="color" required="" value="{{ label.color }}" type="text" value="label.color">
+						<span class="icon is-small is-left">
+							<i class="fa fa-paint-brush"></i>
+						</span>
+					</p>
+				</div>
+
+				
+				<div class="field">
+					<p class="control">
+						<button type="submit" class="button is-success">
+						Save
+						</button>
+					</p>
+				</div>
+
+			</form>
+
+
+			{% endif %}
+
+		</div>
+		<div class="column"></div>
+
+	</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+
+{% endblock %}	

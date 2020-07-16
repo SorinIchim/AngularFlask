@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Rezervare{% endblock %}
+
+{% block content %}
+
+<div class="container is-fluid">
+
+	{% include '_flashmessages.html' %}
+<!-- =================================================================================================== -->
+<!-- COLUMN 1============================================================================== -->
+<!-- =================================================================================================== -->
+	<br>
+	<div class="columns">
+
+		<div style="text-align: center;" class="column">
+            {% if session.has_avatar %}
+
+            <img src="/static/img/uploads/{{ session.user_id }}.jpg"></img>
+
+          {% else %}
+
+            <img src="/static/img/uploads/default.jpg"></img>            
+          
+          {% endif %}
+          <button style="margin:0 8%;" class="button is-success is-outlined">Schimba fotografia</button>
+          <br><br><br><br><br><br>
+
+          <h1 class="title">Nu aveti nici un abonament activ</h1>
+          <div class="field">
+            <p style="text-align: center;" class="control">
+                <button type="rezerva" class="button is-success">
+                    Adauga abonament
+                </button>
+            </p>
+        </div>
+        </div>
+<!-- =================================================================================================== -->
+<!-- COLUMN 2============================================================================== -->
+<!-- =================================================================================================== -->
+        <div class="column">
+
+            <h1 class="title">Statisticile contului</h1>
+            <button class="button is-large is-fullwidth is-warning"><img style="width: 35px; margin:0 5% 0 -15%;" src = "/static/img/coins.png"> Puncte: {{ 2* session['nrTotal'] }}</button>
+            <br>
+            <h2 style="font-size: 20px;">Numar de minute de joc:</h2>
+            <button class="button is-large is-fullwidth is-success is-outlined"><img style="width: 35px; margin:0 5% 0 -15%;" src = "/static/img/billiard.png"> Biliard: {{ session['minuteBiliard'] }} minute</button>
+            <button class="button is-large is-fullwidth is-success is-outlined"><img style="width: 35px; margin:0 5% 0 -15%;" src = "/static/img/bowling.png"> Bowling: {{ session['minuteBowling'] }} minute</button>
+            <button class="button is-large is-fullwidth is-success is-outlined"><img style="width: 35px; margin:0 5% 0 -15%;" src = "/static/img/darts.png"> Darts: {{ session['minuteDarts'] }} minute</button>
+            <button class="button is-large is-fullwidth is-success">
+                <img style="width: 25px;" src = "/static/img/billiard.png">
+                <img style="width: 25px;" src = "/static/img/bowling.png">
+                <img style="width: 25px;" src = "/static/img/darts.png">
+                 Total: {{ session['minuteTotal'] }} minute de joc</button>
+    
+            <br><br><br>
+            <h2 style="font-size: 20px;">Numar de zone de joc inchiriate:</h2>
+            <button class="button is-large is-fullwidth is-info is-outlined"><img style="width: 35px; margin:0 5% 0 -15%;" src = "/static/img/billiard.png"> {{ session['nrBiliard'] }} mese de biliard</button>
+            <button class="button is-large is-fullwidth is-info is-outlined"><img style="width: 35px; margin:0 5% 0 -15%;" src = "/static/img/bowling.png"> {{ session['nrBowling'] }} piste de bowling</button>
+            <button class="button is-large is-fullwidth is-info is-outlined"><img style="width: 35px; margin:0 5% 0 -15%;" src = "/static/img/darts.png"> {{ session['nrDarts'] }} table de darts</button>
+            <button class="button is-large is-fullwidth is-info">
+                <img style="width: 25px;" src = "/static/img/billiard.png">
+                <img style="width: 25px;" src = "/static/img/bowling.png">
+                <img style="width: 25px;" src = "/static/img/darts.png">
+                 Total: {{ session['nrTotal'] }} zone de joc</button>
+        </div>
+
+<!-- =================================================================================================== -->
+<!-- COLUMN 3============================================================================== -->
+<!-- =================================================================================================== -->
+		<div class="column">
+
+            <h1 class="title">Contul meu</h1>
+            <p>
+                Afiseaza si editeaza-ti informatiile personale
+            </p><br>
+
+            <p>E-mailul contului:</p>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                    <input class="input" id="title" name="title" required="" type="text" value="{{ session['email'] }}">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-edit"></i>
+                    </span>
+                </p>
+            </div>
+            <p>Username-ul contului:</p>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                    <input class="input" id="title" name="title" required="" type="text" value="{{ session['username'] }}">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-edit"></i>
+                    </span>
+                </p>
+            </div><br>
+            <p>Schimba parola:</p>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                    <input class="input" id="title" name="title" required="" type="password" value="" placeholder="Parola noua">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-edit"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                    <input class="input" id="title" name="title" required="" type="password" value="" placeholder="Confirma parola">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-edit"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <button  type="rezerva" class="button is-success">
+                        Salveaza modificarile
+                    </button>
+                </p>
+            </div>
+        </div>
+<!-- =================================================================================================== -->
+<!-- ADD NEW RESERVATION======================================================================================= -->
+<!-- =================================================================================================== -->
+            
+
+</div>
+
+{% endblock %}	
